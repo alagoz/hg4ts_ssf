@@ -1,2 +1,2 @@
 # hg4ts_ssf
-HG4TS_SSF: Hierarchical Generation for Time Series using Stochastic Splitting Functions
+HG4TS_SSF: Hierarchy Generation for Time Series using Stochastic Splitting Functions
