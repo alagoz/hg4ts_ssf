@@ -1,20 +1,15 @@
 # 🧩 Stochastic Hierarchy Induction (SHI) for Time Series Classification
+Author: Celal Alagoz  
+License: MIT  
+Python version: 3.10+  
+Last updated: November 2025  
 
-Author: Celal Alagoz
-License: MIT
-Python version: 3.10+
-Last updated: November 2025
-
-🌲 Overview
-
-This repository contains the official implementation of **Stochastic Hierarchy Induction (SHI)** — a framework for **classifier-informed automatic hierarchy generation** and **hierarchical classification (HC)** applied to time series data.
-
-The approach introduces **Stochastic Splitting Functions (SSFs)** — `potr`, `srtr`, and `lsoo` — that recursively partition class sets through performance-guided binary decisions, enabling discriminative top-down hierarchy construction.
-
+🌲 Overview  
+This repository contains the official implementation of **Stochastic Hierarchy Induction (SHI)** — a framework for **classifier-informed automatic hierarchy generation** and **hierarchical classification (HC)** applied to time series data.  
+The approach introduces **Stochastic Splitting Functions (SSFs)** — `potr`, `srtr`, and `lsoo` — that recursively partition class sets through performance-guided binary decisions, enabling discriminative top-down hierarchy construction.  
 <p align="center"> <img src="docs/figures/hierarchy_examples.png" alt="Examples of generated hierarchies" width="700"> <br> <em>Examples of hierarchies generated using SSFs: potr, srtr, and lsoo</em> </p>
 
 ---
-
 ## 🚀 Features
 - **Automatic hierarchy generation (HG)** guided by classifier performance.
 - **Three stochastic splitting functions (SSFs):**
@@ -27,7 +22,6 @@ The approach introduces **Stochastic Splitting Functions (SSFs)** — `potr`, `s
 - Visual examples of generated hierarchies for each SSF type.
 
 ---
-
 ## 🧩 Environment Setup
 
 We recommend creating a fresh conda environment (Python 3.11) and installing dependencies as follows:
@@ -66,7 +60,6 @@ pip install PyWavelets dtaidistance tables statsmodels openpyxl nolds baycomp py
 
 ---
 ## ⚡ Quick Usage Example
-
 Run the following script to perform a quick comparison between Hierarchical and Flat classification:
 ```
 python demo_quick.py
@@ -117,7 +110,6 @@ Time Ratio (HC/FC): 3.24x
 
 ---
 ## 🧠 Citation
-
 If you use this repository in your research, please cite as:
 @misc{hg4ts_ssf_2025,  
 author = {Celal Alagöz},  
@@ -128,3 +120,15 @@ journal = {GitHub repository},
 howpublished = {\url{https://github.com/alagoz/hg4ts_ssf}},  
 note = {Available at: \url{https://github.com/alagoz/hg4ts_ssf}}  
 }  
+
+---
+##  🧭 Acknowledgments
+This work builds upon:  
+- aeon time series framework  
+- MiniRocket, Quant, and Cfire transformations  
+- HIVE-COTE 2.0, Hydra, and related benchmark methods for TSC  
+
+---
+##  🪶 License  
+Released under the MIT License.  
+© 2025 Celal Alagoz.  
