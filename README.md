@@ -114,3 +114,17 @@ Best hierarchy selected with score: 0.8202
 Time Ratio (HC/FC): 3.24x
 ============================================================
 ```
+
+---
+## 🧠 Citation
+
+If you use this repository in your research, please cite as:
+@misc{hg4ts_ssf_2025,
+author = {Celal Alagöz},
+title = {HG4TS_SSF: Hierarchy Generation for Time Series using Stochastic Splitting Functions},
+year = {2025},
+publisher = {GitHub},
+journal = {GitHub repository},
+howpublished = {\url{https://github.com/alagoz/hg4ts_ssf}},
+note = {Available at: \url{https://github.com/alagoz/hg4ts_ssf}}
+}
