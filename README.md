@@ -1,4 +1,4 @@
-🧩 Stochastic Hierarchy Induction (SHI) for Time Series Classification
+# 🧩 Stochastic Hierarchy Induction (SHI) for Time Series Classification
 
 Author: Celal Alagoz
 License: MIT
@@ -7,46 +7,110 @@ Last updated: November 2025
 
 🌲 Overview
 
-This repository provides the official implementation of the Stochastic Hierarchy Induction (SHI) framework — a classifier-informed approach for automatic hierarchy generation (HG) and hierarchy exploitation (HE) in Time Series Classification (TSC).
+This repository contains the official implementation of **Stochastic Hierarchy Induction (SHI)** — a framework for **classifier-informed automatic hierarchy generation** and **hierarchical classification (HC)** applied to time series data.
 
-Unlike traditional hierarchical classification (HC) that relies on predefined label trees, SHI automatically derives hierarchical structures from flat label sets using the discriminative power of base classifiers.
-The framework introduces Stochastic Splitting Functions (SSFs) — potr, srtr, and lsoo — to build diverse, data-driven hierarchies, and employs an extended Local Classifier Per Node (LCPN+) strategy for efficient exploitation.
+The approach introduces **Stochastic Splitting Functions (SSFs)** — `potr`, `srtr`, and `lsoo` — that recursively partition class sets through performance-guided binary decisions, enabling discriminative top-down hierarchy construction.
 
 <p align="center"> <img src="docs/figures/hierarchy_examples.png" alt="Examples of generated hierarchies" width="700"> <br> <em>Examples of hierarchies generated using SSFs: potr, srtr, and lsoo</em> </p>
-🚀 Key Features
 
-Automatic Hierarchy Generation (HG) via classifier-guided splitting
+---
 
-Three Stochastic Splitting Functions (SSFs):
+## 🚀 Features
+- **Automatic hierarchy generation (HG)** guided by classifier performance.
+- **Three stochastic splitting functions (SSFs):**
+  - `potr` – *Pick-One-Then-Regroup*
+  - `srtr` – *Split-Randomly-Then-Regroup*
+  - `lsoo` – *Leave-Salient-One-Out*
+- **Hierarchical classification (HC)** using an extended Local Classifier Per Node (LCPN+) scheme.
+- **Comparison against flat classification (FC)** with performance and runtime summaries.
+- **Support for multiple base classifiers** (`MiniRocket`, `Quant`, `Cfire`).
+- Visual examples of generated hierarchies for each SSF type.
 
-potr — pick-one-then-regroup
+---
 
-srtr — split-randomly-then-regroup
+## 🧩 Environment Setup
 
-lsoo — leave-salient-one-out
+We recommend creating a fresh conda environment (Python 3.11) and installing dependencies as follows:
 
-Hierarchy Exploitation (HE) using LCPN+ — an enhanced local hierarchical classifier
+```bash
+conda create -n ts_gpu_311 python=3.11 -y
+conda activate ts_gpu_311
 
-Plug-and-Play Classifiers: compatible with any scikit-learn or aeon estimator
+# GPU-enabled PyTorch
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 
-Benchmark-ready: tested on 92 datasets from the UCR TSC Archive
+# Core dependencies
+pip install pytorch-lightning aeon[all_extras] tsfresh>=0.20.1 prince>=0.16.0 
+pip install xgboost catboost lightgbm seaborn
 
-Supports nested/flat evaluation and detailed runtime + performance breakdowns
+# Additional utilities
+pip install PyWavelets dtaidistance tables statsmodels openpyxl nolds baycomp pytisean openml proglearn
+```
 
-🧠 Framework Overview
+---
 
-SHI operates in two main stages:
+## 📁 Repository Structure
+.  
+├── demo_quick.py               # Minimal example to run SHI + HC vs FC  
+├── utils.py                    # Helper functions (sorting, plotting, etc.)  
+├── hg_ssf.py                   # Hierarchy Generation using SSFs (potr, srtr, or lsoo)  
+├── shi.py                      # Stochastic Hierarchy Inductor (core)  
+├── he_binary_tree.py           # BinaryTreeClassifier implementing LCPN+  
+├── examples/  
+│   ├── hierarchy_potr.png  
+│   ├── hierarchy_srtr.png  
+│   ├── hierarchy_lsoo.png  
+│   └── ...  
+├── README.md  
+└── LICENSE  
 
-Hierarchy Generation (HG):
+---
+## ⚡ Quick Usage Example
 
-Classes are recursively split into sibling groups using one of the SSFs.
+Run the following script to perform a quick comparison between Hierarchical and Flat classification:
+```
+python demo_quick.py
+```
+You can modify the configuration section in `demo_quick.py`:
+```
+DATASET_NAME = "OliveOil"
+TRANSFORM_MODEL = "MiniRocket"    # or "Quant", "Cfire"
+SPLITTING_FUNCTION = "srtr"       # or "potr", "lsoo"
+N_ITER = 3
 
-Each candidate split is evaluated by training a lightweight classifier on sibling groups.
+```
+## 🧮 Sample Output
+```
+📂 Loading dataset: Tools
 
-The hierarchy that maximizes validation performance is selected.
+🔄 Applying MiniRocket transformation...
 
-Hierarchy Exploitation (HE):
+🌳 Inducing Stochastic Hierarchy (SSF = 'srtr')...
+Stochastic Hierarchy Induction with 3 iterations
+Best hierarchy selected with score: 0.8202
+   Hierarchy induction completed in 1.45s
 
-Each parent node trains a local classifier (LCPN+) on its child groups.
+⚙️  Training hierarchical classifier (LCPN+)...
+   HC training completed in 0.24s
 
-Predictions traverse the tree top-down, combining decisions from all local models.
+⚡ Running flat classification (FC baseline)...
+
+🧩 Hierarchical (HC-lcpn+) Results:
+   Accuracy: 0.8315
+   F1-Macro: 0.8254
+   Balanced Accuracy: 0.8032
+   Train Time: 0.24s | Test Time: 0.00s | Total: 0.24s
+
+🧩 Flat (FC) Results:
+   Accuracy: 0.8202
+   F1-Macro: 0.8344
+   Balanced Accuracy: 0.8144
+   Train Time: 0.07s | Test Time: 0.00s | Total: 0.07s
+
+============================================================
+📊 COMPARISON SUMMARY
+============================================================
+Δ Accuracy (HC - FC): +0.0112
+Time Ratio (HC/FC): 3.24x
+============================================================
+```
