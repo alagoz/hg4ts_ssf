@@ -1,9 +1,30 @@
 """
-Hierarchical vs Flat Classification Demo
-========================================
+Stochastic Hierarchy Induction (SHI) Demo
+=========================================
 
-A comprehensive comparison between Hierarchical Classification (HC) 
-and Flat Classification (FC) on time series datasets.
+This demo showcases the proposed Stochastic Hierarchy Induction (SHI) framework 
+for automated hierarchy generation (HG) and exploitation (HE) in Time Series 
+Classification (TSC).
+
+The SHI framework introduces Stochastic Splitting Functions (SSFs)—'potr', 
+'srtr', and 'lsoo'—to construct discriminative, classifier-informed hierarchical 
+structures directly from flat label sets. Hierarchies are exploited using the 
+extended Local Classifier Per Node strategy (LCPN+), enabling performance-driven 
+hierarchical modeling.
+
+The script performs an end-to-end evaluation of SHI-based Hierarchical 
+Classification (HC) against traditional Flat Classification (FC), using 
+MiniRocket-transformed representations and efficient linear classifiers.
+
+Users can configure:
+  • The stochastic splitting function (e.g., 'srtr', 'potr', 'lsoo')
+  • Base estimators for hierarchy generation (est_hg) and exploitation (est_he)
+  • Dataset name, random seed, and number of stochastic iterations
+  • Cross-validation and evaluation options
+
+This demonstration highlights the generalization behavior, efficiency, and 
+predictive advantages of SHI-based hierarchical modeling compared to 
+flat baselines on benchmark time series datasets.
 
 Author: Celal Alagoz
 License: MIT
@@ -293,4 +314,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
