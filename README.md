@@ -7,7 +7,7 @@ Last updated: November 2025
 🌲 Overview  
 This repository contains the official implementation of **Stochastic Hierarchy Induction (SHI)** — a framework for **classifier-informed automatic hierarchy generation** and **hierarchical classification (HC)** applied to time series data.  
 The approach introduces **Stochastic Splitting Functions (SSFs)** — `potr`, `srtr`, and `lsoo` — that recursively partition class sets through performance-guided binary decisions, enabling discriminative top-down hierarchy construction.  
-<p align="center"> <img src="docs/figures/hierarchy_examples.png" alt="Examples of generated hierarchies" width="700"> <br> <em>Examples of hierarchies generated using SSFs: potr, srtr, and lsoo</em> </p>
+<p align="center"> <img src="docs/figures/example_hierarchies_Tools.png" alt="Examples of generated hierarchies" width="700"> <br> <em>Examples of hierarchies generated using SSFs: potr, srtr, and lsoo</em> </p>
 
 ---
 ## 🚀 Features
