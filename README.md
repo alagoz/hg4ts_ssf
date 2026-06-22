@@ -55,6 +55,8 @@ pip install PyWavelets dtaidistance tables statsmodels openpyxl nolds baycomp py
 │   ├── hierarchy_srtr.png  
 │   ├── hierarchy_lsoo.png  
 │   └── ...  
+├── results/  
+│   ├── supplementary_material.pdf  
 ├── README.md  
 └── LICENSE  
 
